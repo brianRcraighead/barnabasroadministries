@@ -1,9 +1,9 @@
 {
   "name": "Barnabas Road Ministries",
-  "tagline": "",
+  "tagline": "Encouraging men in their walk with Jesus.",
   "theme": "blue",
   "layout": "header",
-  "logo": "",
+  "logo": "https://editor.barnabasroadministries.org/brand/barnabas-logo.jpeg",
   "domain": "https://barnabasroadministries.org",
   "footer": "",
   "socials": [],
@@ -21,7 +21,10 @@
           "id": "home-intro",
           "type": "hero",
           "variant": "compact",
-          "title": "Barnabas Road Ministries"
+          "title": "Encouraging men in their walk with Jesus",
+          "text": "Barnabas Road brings men together to know Jesus, follow Jesus, and serve Jesus. We share life, encourage one another, and grow in faith through fellowship.",
+          "button": "About Barnabas Road",
+          "href": "/about/"
         }
       ]
     },
@@ -34,12 +37,41 @@
           "id": "about-intro",
           "type": "hero",
           "variant": "compact",
-          "title": "About"
+          "title": "About Barnabas Road",
+          "text": "For men who want to know Jesus and grow in their walk with Him."
         },
         {
           "id": "about-text",
           "type": "text",
-          "text": ""
+          "text": "We study God's Word, put it into practice, and share what God has done in our lives. We encourage men to put God first and lead their families as they follow Jesus.",
+          "title": "Discipleship through fellowship"
+        },
+        {
+          "id": "culture-essentials",
+          "type": "list",
+          "title": "Our five culture essentials",
+          "items": [
+            {
+              "title": "Grace : we are loved unconditionally.",
+              "text": ""
+            },
+            {
+              "title": "Walk together : we are not alone; we are brothers in Christ.",
+              "text": ""
+            },
+            {
+              "title": "Full surrender : put God first, followed by family and work.",
+              "text": ""
+            },
+            {
+              "title": "Others over me : serve others and die to self daily.",
+              "text": ""
+            },
+            {
+              "title": "Room for one more : be a friend, make a friend, and lead a friend to Christ.",
+              "text": ""
+            }
+          ]
         }
       ]
     },
@@ -52,12 +84,52 @@
           "id": "programs-intro",
           "type": "hero",
           "variant": "compact",
-          "title": "Ministries"
+          "title": "Ministries",
+          "text": "Knowing Jesus, following Jesus, and serving Jesus."
         },
         {
           "id": "programs-list",
           "type": "programs",
-          "items": []
+          "items": [
+            {
+              "title": "Knowing Jesus",
+              "text": "Get to know Jesus through God's Word and the life experiences of other men."
+            },
+            {
+              "title": "Following Jesus",
+              "text": "Study Scripture, act on it, and devote your life to God."
+            },
+            {
+              "title": "Serving Jesus",
+              "text": "Put others first and help a friend grow closer to Christ."
+            }
+          ],
+          "title": "Growing in faith"
+        },
+        {
+          "id": "monthly-gatherings",
+          "type": "text",
+          "title": "Meetings and retreats",
+          "text": "We meet once a month, indoors or outdoors, with spring and fall retreats. Meetings last about 90 minutes and include fellowship, teaching, and personal testimonies."
+        },
+        {
+          "id": "relationships",
+          "type": "list",
+          "title": "Three areas of discipleship",
+          "items": [
+            {
+              "title": "Inward : our relationship with ourselves.",
+              "text": ""
+            },
+            {
+              "title": "Upward : our relationship with God.",
+              "text": ""
+            },
+            {
+              "title": "Outward : our relationship with the world.",
+              "text": ""
+            }
+          ]
         }
       ]
     },
@@ -70,7 +142,8 @@
           "id": "donate-intro",
           "type": "donate",
           "title": "Donate",
-          "button": "Donate"
+          "button": "Donate",
+          "text": "Contributions help with food costs for our meetings and future spring and fall retreats."
         }
       ]
     },
@@ -83,7 +156,8 @@
           "id": "contact-intro",
           "type": "hero",
           "variant": "compact",
-          "title": "Contact"
+          "title": "Contact",
+          "text": "Gatherings take place at local churches and community spaces. Meeting dates and locations will be shared here."
         },
         {
           "id": "contact-details",
@@ -101,7 +175,8 @@
           "id": "team-intro",
           "type": "hero",
           "variant": "compact",
-          "title": "Team"
+          "title": "Team",
+          "text": "Brian and Kelly lead the meetings."
         },
         {
           "id": "team-profiles",
