@@ -20,9 +20,9 @@ The browser sends an authenticated Publish request; the Worker freezes the saved
 
 ## Secure publishing credentials
 
-The initial setup used a short-lived Cloudflare token only on the setup machine. It is not a live Worker secret or a GitHub secret. Ongoing publication requires the administrator to open **Deployment & API** and enter:
+The initial setup used a short-lived Cloudflare token only on the setup machine. It is not a live Worker secret or a GitHub secret. The Cloudflare publishing token is configured. Ongoing publication also requires the administrator to open **Deployment & API** and supply the GitHub publishing credential below:
 
-1. Cloudflare publishing API token restricted to this account, Workers Scripts Write (and Account Settings Read for the subdomain validation). Publishing static assets may require Workers asset permissions bundled with Workers Scripts. Test the token in the editor before saving.
+1. Cloudflare publishing API token. Configured on November 26, 2026: `Barnabas Studio - public website publishing`, with Individual Workers Editor restricted to the existing `barnabasroadministries` Worker and Workers Metadata Read-Only for account-level subdomain discovery. No scheduled expiry. It has no DNS, billing, D1, or API-token-management grants, and cannot access the editor Worker code. A static deployment with this exact token passed. The value lives only encrypted in D1; revoke or rotate it through the account API Tokens dashboard, then update Deployment & API.
 2. GitHub fine-grained token for this repository only with Actions Read and Write and Metadata Read, authorized by its owner. It dispatches the publishing workflow; it does not need code-write permission.
 
 Both tokens can be saved separately. They are encrypted with AES-GCM in D1, keyed from SESSION_SECRET. The API returns configured flags only, never saved token values. Restrict administrator access. Dashboard links contain public account/resource IDs, no authentication tokens.
