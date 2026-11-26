@@ -7,4 +7,6 @@ export const professionalCss=`
 .blue .site-footer{background:white;color:#202a32;border-top:1px solid var(--line)}.blue .site-footer p{color:#626e77}.blue .hero.variant-feature{background:white}.blue h1{font-size:clamp(32px,4vw,48px)}
 
 .site-header .brand{display:flex;align-items:center;gap:16px;max-width:360px;text-decoration:none}.site-header .site-logo{width:130px;height:auto;max-width:36vw;object-fit:contain;flex-shrink:0}.brand-name{font-size:19px;line-height:1.2;font-weight:700}.site-sidebar-layout .brand{flex-direction:column;align-items:flex-start}.site-sidebar-layout .brand-name{font-size:17px}@media(max-width:760px){.site-header .brand{max-width:100%}.site-header .site-logo{width:106px}.brand-name{font-size:17px}.site-header nav{flex-wrap:wrap}}
+
+body:not(.site-sidebar-layout) .site-header{flex-wrap:wrap}@media(max-width:760px){body:not(.site-sidebar-layout) .site-header{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;padding:18px 23px}body:not(.site-sidebar-layout) .site-header .brand{max-width:none;gap:12px}body:not(.site-sidebar-layout) .site-header .site-tagline{display:none}body:not(.site-sidebar-layout) .site-header nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 15px}body:not(.site-sidebar-layout) .site-header nav a{font-size:13px}body:not(.site-sidebar-layout) .site-header>.social-links:empty{display:none}}
 `;
