@@ -1,0 +1,7 @@
+CREATE TABLE studio_auth (
+ id INTEGER PRIMARY KEY CHECK (id = 1),
+ salt TEXT NOT NULL,
+ password_hash TEXT NOT NULL,
+ version TEXT NOT NULL,
+ updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

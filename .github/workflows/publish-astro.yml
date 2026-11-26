@@ -1,0 +1,79 @@
+name: Publish Astro website
+
+run-name: Publish website ${{ inputs.project_id }} · ${{ inputs.deployment_id }}
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      deployment_id:
+
+        required: true
+
+        type: string
+
+      project_id:
+
+        required: true
+
+        type: string
+
+permissions:
+
+  contents: read
+
+concurrency:
+
+  group: publish-${{ inputs.project_id }}
+
+  cancel-in-progress: false
+
+jobs:
+
+  publish:
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    env:
+
+      STUDIO_URL: https://editor.barnabasroadministries.org
+
+      DEPLOYMENT_ID: ${{ inputs.deployment_id }}
+
+      BUILD_CALLBACK_SECRET: ${{ secrets.BUILD_CALLBACK_SECRET }}
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+
+        with:
+
+          node-version: 24
+
+
+
+      - run: npm ci
+
+      - name: Read saved revision from studio
+
+        run: node scripts/astro-job.mjs prepare
+
+      - name: Build Astro website
+
+        run: npm run build:site
+
+      - name: Publish Cloudflare static assets
+
+        run: node scripts/astro-job.mjs deploy
+
+      - name: Report build failure
+
+        if: failure()
+
+        run: node scripts/astro-job.mjs failed

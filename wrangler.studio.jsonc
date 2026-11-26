@@ -1,0 +1,31 @@
+{
+  "name": "barnabas-studio",
+  "account_id": "19bc15e9a46712fcf67701027b7b44b9",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-05",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "barnabas-studio",
+      "database_id": "b18855e5-3d0f-46a3-8b19-dc5219b0de4f",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA"
+  },
+  "vars": {
+    "GITHUB_REPOSITORY": "brianRcraighead/barnabasroadministries",
+    "PUBLIC_WORKER_NAME": "barnabasroadministries",
+    "CLOUDFLARE_ACCOUNT_ID": "19bc15e9a46712fcf67701027b7b44b9"
+  }
+}

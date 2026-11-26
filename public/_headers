@@ -1,0 +1,8 @@
+/*
+  Cache-Control: no-cache
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+/references/archive/assets/*
+  Access-Control-Allow-Origin: *

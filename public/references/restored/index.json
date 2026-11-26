@@ -1,0 +1,53 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "originalPath": "/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "originalPath": "/about/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "programs",
+      "title": "Ministries",
+      "originalPath": "/programs/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "donate",
+      "title": "Donate",
+      "originalPath": "/donate/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "originalPath": "/contact/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "team",
+      "title": "Team",
+      "originalPath": "/team/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    },
+    {
+      "id": "partners",
+      "title": "Partners",
+      "originalPath": "/partners/",
+      "capturedAt": "Initial neutral template",
+      "kind": "starter"
+    }
+  ]
+}

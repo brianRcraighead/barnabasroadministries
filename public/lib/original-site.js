@@ -1,0 +1,2 @@
+import {ensureIds} from './editor-model.js';
+export function originalSiteProject(current,template){if(template?.originalRestoration?.version!==1||!template.pages?.length)throw Error('Starter layout unavailable.');const next={...structuredClone(current),theme:'original-site',layout:'header',originalRestoration:{version:1,layoutSource:'Initial neutral layout',contentPolicy:'Preserve current content'}};return ensureIds(next);}

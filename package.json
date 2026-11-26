@@ -1,39 +1,21 @@
 {
-	"name": "barnabasroadministries",
-	"description": "Build a personal website, blog, or portfolio with Astro.",
-	"cloudflare": {
-		"label": "Astro Framework Starter",
-		"products": [
-			"Workers"
-		],
-		"categories": [],
-		"preview_icon_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/394ca3c9-d351-4036-035a-9f6dfa26dd00/public",
-		"preview_image_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/f40a6577-eed5-4f3e-cef4-b5ef0a1be100/preview",
-		"publish": true
-	},
-	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
-		"@astrojs/rss": "4.0.14",
-		"@astrojs/sitemap": "3.6.1",
-		"astro": "5.16.9",
-		"typescript": "5.9.3"
-	},
-	"devDependencies": {
-		"wrangler": "4.136.1"
-	},
-	"engines": {
-		"node": ">=22"
-	},
-	"private": true,
-	"scripts": {
-		"astro": "astro",
-		"build": "astro build",
-		"cf-typegen": "wrangler types",
-		"check": "astro build && tsc && wrangler deploy --dry-run",
-		"deploy": "wrangler deploy",
-		"dev": "astro dev",
-		"preview": "astro build && wrangler dev"
-	},
-	"type": "module"
+  "name": "barnabasroadministries",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.studio.jsonc",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check src/worker.js && node --check src/publish.js && node --check public/app.js && node --check public/canvas-editor.js && node --check public/lib/site.js && node --check public/lib/canvas.js && node --check public/lib/presets.js && node --check src/auth.js && node --check src/password.js && node --check src/settings.js && node --check public/lib/tenant.js && node --check src/builds.js && node --check scripts/astro-job.mjs && node --check scripts/verify-site.mjs && node --check public/lib/design.js && node --check public/lib/section-library.js && node --check public/section-library-panel.js && node --check public/inline-editor.js && node --check public/media-library.js && node --check public/preview-update.js && node --check public/lib/editor-model.js && node --check src/media.js && node --check scripts/prepare-media.mjs && node --check public/original-reference.js && node --check public/lib/legacy-look.js && node --check public/lib/original-site.js && node --check public/lib/original-site-theme.js",
+    "deploy": "wrangler deploy --config wrangler.jsonc",
+    "db:local": "wrangler d1 migrations apply DB --local --config wrangler.local.jsonc",
+    "db:remote": "wrangler d1 migrations apply DB --remote --config wrangler.studio.jsonc",
+    "build:site": "node scripts/prepare-site.mjs && astro build --root website && node scripts/verify-site.mjs",
+    "build": "npm run build:site",
+    "deploy:studio": "wrangler deploy --config wrangler.studio.jsonc"
+  },
+  "devDependencies": {
+    "astro": "7.4.7",
+    "wrangler": "4.158.0"
+  }
 }

@@ -1,0 +1,11 @@
+---
+
+import {loadBuildProject} from '../../project.mjs';
+
+import {renderPage} from '../../../public/lib/site.js';
+
+const project=loadBuildProject();
+
+---
+
+<Fragment set:html={renderPage(project,{id:'not-found',title:'Page not found',path:'/404/',blocks:[{type:'hero',title:'Let’s find your way back.',text:'This page is not here. Please choose a page from the navigation.',button:'Return home',href:'/'}]})} />

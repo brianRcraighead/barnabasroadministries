@@ -1,0 +1,8 @@
+---
+import fs from 'node:fs';import {createHash} from 'node:crypto';import {loadBuildProject} from '../../project.mjs';import {renderPage} from '../../../public/lib/site.js';
+export function getStaticPaths(){const project=loadBuildProject();return project.pages.map(page=>({params:{slug:page.path==='/'?undefined:page.path.slice(1,-1)},props:{project,page}}));}
+const {project:original,page:originalPage}=Astro.props;
+const map=JSON.parse(fs.readFileSync('website/media-map.json','utf8'));const project=JSON.parse(JSON.stringify(original),(key,value)=>typeof value==='string'&&map[value]?map[value]:value);
+const page=project.pages.find(p=>p.id===originalPage.id);const hash=createHash('sha256').update(JSON.stringify(original)).digest('hex');const html=renderPage(project,page).replace('</head>',`<meta name="studio-content-hash" content="${hash}"></head>`);
+---
+<Fragment set:html={html} />

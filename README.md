@@ -1,64 +1,46 @@
-# Astro Starter Kit: Blog
+# Barnabas Road Ministries Studio
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template)
+A separate, neutral nonprofit site editor for Brian Craighead. The former Astro example was replaced; the original template remains in Git history.
 
-![Astro Template Preview](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- Public: https://barnabasroadministries.org (.com redirects here)
+- Editor: https://editor.barnabasroadministries.org
+- Repository: https://github.com/brianRcraighead/barnabasroadministries
 
-<!-- dash-content-start -->
+## Editing and publishing
 
-Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+Sign in as Bcraighead with the initial password supplied separately. Change password is available in the sidebar (new passwords need 12 characters). Click page text to edit, hover a button for its own link/remove controls, and hover a section for section controls. Internal links use a page/section picker; external links accept a URL. The section library and freeform canvas support individual layouts. Save creates a revision; Publish builds that saved snapshot, keeping later draft edits separate. Versions restore prior drafts without replacing the live site until another publication.
 
-Features:
+The starter deliberately contains no invented ministry activities, people, contact details, payment address or stock photos. Add approved content before inviting visitors. Classic appearance comparison keeps current content; the pre-change checkpoint and revision history remain available.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Built-in Observability logging
+## Architecture and automation
 
-<!-- dash-content-end -->
+The editor runs on the barnabas-studio Cloudflare Worker. Its own D1 database stores project JSON, revisions, media, users, encrypted settings and deployment metadata. Public visitors receive static Astro HTML and assets from the barnabasroadministries Worker. No visitor JavaScript or database reads are required. Local Node or this computer is not needed for later publication.
 
-## Getting Started
+The browser sends an authenticated Publish request; the Worker freezes the saved revision and encrypted destination configuration, then dispatches publish-astro.yml on main. The GitHub runner uses BUILD_CALLBACK_SECRET to retrieve that snapshot, builds Astro, deploys static assets and posts status back. The transient build configuration is erased on completion. GitHub stores no drafts or uploaded media in commits. The runner workspace is disposable and is never uploaded as an artifact. Check runs on push/PR; publication runs only on demand. Both use bounded Linux jobs, no scheduled jobs and no Actions caches/artifacts.
 
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
+## Secure publishing credentials
 
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/astro-blog-starter-template
-```
+The initial setup used a short-lived Cloudflare token only on the setup machine. It is not a live Worker secret or a GitHub secret. Ongoing publication requires the administrator to open **Deployment & API** and enter:
 
-A live public deployment of this template is available at [https://astro-blog-starter-template.templates.workers.dev](https://astro-blog-starter-template.templates.workers.dev)
+1. Cloudflare publishing API token restricted to this account, Workers Scripts Write (and Account Settings Read for the subdomain validation). Publishing static assets may require Workers asset permissions bundled with Workers Scripts. Test the token in the editor before saving.
+2. GitHub fine-grained token for this repository only with Actions Read and Write and Metadata Read, authorized by its owner. It dispatches the publishing workflow; it does not need code-write permission.
 
-## 🚀 Project Structure
+Both tokens can be saved separately. They are encrypted with AES-GCM in D1, keyed from SESSION_SECRET. The API returns configured flags only, never saved token values. Restrict administrator access. Dashboard links contain public account/resource IDs, no authentication tokens.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Persistent secrets: SESSION_SECRET on the studio Worker, and the same BUILD_CALLBACK_SECRET on the studio Worker and repository Actions secrets. Keep SESSION_SECRET stable; rotating it invalidates sessions and requires reentering encrypted publishing settings. Callback-secret rotation must update both services together. Account setup passwords and temporary API tokens must never enter Git, frontend assets, screenshots or logs.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Development
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Node 24: npm ci; npm test; npm run check; npm run build:site.
 
-Any static assets, like images, can be placed in the `public/` directory.
+For local editor: node scripts/configure-local.mjs; npm run db:local; node scripts/provision-accounts.mjs --local; npx wrangler dev --config wrangler.local.jsonc. The generated local password lives only in ignored .env.accounts. The smoke helper rejects non-local targets.
 
-## 🧞 Commands
+Public deployment: npm run build:site then npm run deploy. Editor deployment: npm run deploy:studio. Remote D1 migrations: npm run db:remote. Use an account-scoped token through environment variables, never command arguments. The public and studio Wrangler configs are intentionally separate. Preserve existing custom domains, .com redirect Worker, and email DNS.
 
-All commands are run from the root of the project, from a terminal:
+## Cost and privacy
 
-| Command                           | Action                                           |
-| :-------------------------------- | :----------------------------------------------- |
-| `npm install`                     | Installs dependencies                            |
-| `npm run dev`                     | Starts local dev server at `localhost:4321`      |
-| `npm run build`                   | Build your production site to `./dist/`          |
-| `npm run preview`                 | Preview your build locally, before deploying     |
-| `npm run astro ...`               | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help`         | Get help using the Astro CLI                     |
-| `npm run build && npm run deploy` | Deploy your production site to Cloudflare        |
-| `npm wrangler tail`               | View real-time logs for all Workers              |
+A public repository keeps standard GitHub-hosted runner compute free. This project deliberately uploads no Actions artifacts or caches; public repositories do not make every storage/product free. Keep paid-product budgets at zero if a strict no-overage policy is wanted. Cloudflare usage remains subject to the account plan and its quotas. Credentials and private data belong in the Worker/D1, not repository files. Making this repository private is optional; that changes runner billing and is not a substitute for secret hygiene.
 
-## 👀 Want to learn more?
+## Recovery and boundaries
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Export project JSON and retain D1 backups before destructive work. Revisions and the custom-layout checkpoint support content rollback. Worker deployments support code rollback. Only publish-astro.yml publishes content; ordinary code checks do not deploy the studio. An existing Cloudflare Git integration may separately deploy the public Worker from main, so review that integration before pushing unrelated code. Never reuse Pathway of Hope account IDs, tokens, people, media or production data. This deployment is isolated.
