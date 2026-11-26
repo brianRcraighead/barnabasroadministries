@@ -44,3 +44,7 @@ A public repository keeps standard GitHub-hosted runner compute free. This proje
 ## Recovery and boundaries
 
 Export project JSON and retain D1 backups before destructive work. Revisions and the custom-layout checkpoint support content rollback. Worker deployments support code rollback. Only publish-astro.yml publishes content; ordinary code checks do not deploy the studio. An existing Cloudflare Git integration may separately deploy the public Worker from main, so review that integration before pushing unrelated code. Never reuse Pathway of Hope account IDs, tokens, people, media or production data. This deployment is isolated.
+
+## Ministry themes
+
+Organization & style includes Quiet Way, Rooted, Fellowship and Scripture, with previews of the current draft on desktop and phone. Applying a theme changes only formatting; Save and Publish remain separate. The original blue and other palettes stay available. See [design references and theme behavior](docs/THEMES.md).
